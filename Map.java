@@ -31,6 +31,20 @@ public class Map {
                 ystart = j;
             } 
         }
+
+        for (int i = 0 ; i < map.size() ; i++) {
+            if (map.get(i).charAt(map.size()-1) == '0' ) {
+                xfinal = i;
+                yfinal = map.size()-1;
+            }
+        }
+
+        for (int j = 0 ; j < map.size() ; j++) {
+            if (map.get(map.size()-1).charAt(j) == '0') {
+                xfinal = map.size()-1;
+                yfinal = j;
+            }
+        }
     }
 
     public ArrayList<String> getMap() {
@@ -41,12 +55,19 @@ public class Map {
         map = newmap;
     }
 
-    public static void main(String[] args) {
-        try {
-            Map newmap = new Map();
-            System.out.println(newmap.getMap().get(2).charAt(2));
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+    public int getXFinal() {
+        return xfinal;
+    }
+
+    public int getYFinal() {
+        return yfinal;
+    }
+
+    public int getXStart() {
+        return xstart;
+    }
+
+    public int getYStart() {
+        return ystart;
     }
 }
