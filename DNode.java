@@ -1,22 +1,25 @@
-public class Node {
+public class DNode {
     
     // Atribut
     int x,y;
-    float h,k;
+    double h,k;
+    DNode next;
 
     // Method
-    public Node(int x, int y) {
+    public DNode(int x, int y,DNode dn) {
         this.x = x;
         this.y = y;
         h = 0;
         k = 0;
+        next = dn;
     }
 
-    public Node(int x, int y, float h, float k) {
+    public DNode(int x, int y, double h, double k, DNode dn) {
         this.x = x;
         this.y = y;
         this.h = h;
         this.k = k;
+        this.next = dn;
     }
 
     public int getX() {
@@ -27,11 +30,11 @@ public class Node {
         return y;
     }
 
-    public float getH() {
+    public double getH() {
         return h;
     }
 
-    public float getK() {
+    public double getK() {
         return k;
     }
 
@@ -43,15 +46,23 @@ public class Node {
         this.y = y;
     }
 
-    public void setH(float h) {
+    public void setH(double h) {
         this.h = h;
     }
 
-    public void setK(float k) {
+    public void setK(double k) {
         this.k = k;
     }
 
-    public boolean isEqual(Node n) {
+    public DNode getNext() {
+        return next;
+    }
+
+    public boolean isEqual(DNode n) {
         return (x == n.getX() && y == n.getY());
+    }
+
+    public void print() {
+        System.out.printf("%d,%d,%f,%f\n",x,y,h,k);
     }
 }

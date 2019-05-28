@@ -5,53 +5,58 @@ import java.util.ArrayList;
 public class Map {
     
     // Atribut
-    ArrayList<String> map = new ArrayList<String>();
+    ArrayList<StringBuilder> map = new ArrayList<StringBuilder>();
     int xstart,ystart;
     int xfinal,yfinal;
+    int length,width;
 
     // Method
     public Map() throws Exception {
         File newfile = new File("map.txt");
         Scanner newscan = new Scanner(newfile);
         while(newscan.hasNextLine()) {
-            map.add(newscan.nextLine());
+            StringBuilder temp = new StringBuilder(newscan.nextLine());
+            map.add(temp);
         }
         newscan.close();
 
-        for (int i = 0 ; i < map.size() ; i++) {
+        length = map.get(0).length(); //kolom
+        width = map.size(); //baris
+
+        for (int i = 0 ; i < width ; i++) {
             if (map.get(i).charAt(0) == '0') {
                 xstart = i;
                 ystart = 0;
             }
         }
 
-        for (int j = 0 ; j < map.size() ; j++) {
+        for (int j = 0 ; j < length ; j++) {
             if (map.get(0).charAt(j) == '0' ) {
                 xstart = 0;
                 ystart = j;
             } 
         }
 
-        for (int i = 0 ; i < map.size() ; i++) {
-            if (map.get(i).charAt(map.size()-1) == '0' ) {
+        for (int i = 0 ; i < width ; i++) {
+            if (map.get(i).charAt(length-1) == '0' ) {
                 xfinal = i;
-                yfinal = map.size()-1;
+                yfinal = length-1;
             }
         }
 
-        for (int j = 0 ; j < map.size() ; j++) {
-            if (map.get(map.size()-1).charAt(j) == '0') {
-                xfinal = map.size()-1;
+        for (int j = 0 ; j < length ; j++) {
+            if (map.get(width-1).charAt(j) == '0') {
+                xfinal = width-1;
                 yfinal = j;
             }
         }
     }
 
-    public ArrayList<String> getMap() {
+    public ArrayList<StringBuilder> getMap() {
         return map;
     }
 
-    public void setMap(ArrayList<String> newmap) {
+    public void setMap(ArrayList<StringBuilder> newmap) {
         map = newmap;
     }
 
@@ -69,5 +74,57 @@ public class Map {
 
     public int getYStart() {
         return ystart;
+    }
+
+    public void setPoint(int x, int y, char n) {
+        map.get(x).setCharAt(y, n);
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void showMap() {
+        for(int i = 0 ; i < width; i++ ) {
+            for (int j = 0 ; j < length ; j++ ) {
+                if (map.get(i).charAt(j) == '0' ) {
+                    System.out.print("   ");
+                } else {
+                    System.out.print(" # ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public boolean isValidPos(int i, int j) {
+        if (i < width && j < length) {
+            if (map.get(i).charAt(j) == '0') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void showSolution() {
+        for (int i = 0 ; i < width ; i++) {
+            for (int j = 0 ; j < length ; j++) {
+                if (map.get(i).charAt(j) == '0') {
+                    System.out.print("   ");
+                } else if (map.get(i).charAt(j) == '1') {
+                    System.out.print(" # ");
+                } else if (map.get(i).charAt(j) == '4'){
+                    System.out.print(" X ");
+                } else {
+                    System.out.print(" . ");
+                }
+            }
+            System.out.println();
+        }
     }
 }
