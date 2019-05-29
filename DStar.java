@@ -10,7 +10,6 @@ public class DStar {
     public DStar() {
         try {
             ma = new Map();
-            pq = new PrioQueue();
         } catch (Exception e) {
             System.out.println("Map file not found :(");
         }
@@ -32,15 +31,17 @@ public class DStar {
         this.pq = pq;
     }
 
-    public DNode startDS() {
-        DNode finalNode = new DNode(ma.getXFinal(),ma.getYFinal(),0,0,null);
+    public DNode startDS(int xstart, int ystart, int xfinal, int yfinal) {
+        pq = new PrioQueue();
+
+        DNode finalNode = new DNode(xfinal,yfinal,0,0,null);
         pq.add(finalNode);
 
         while (!(pq.isEmpty())) {
             DNode current_node = pq.delete();
             ma.setPoint(current_node.getX(),current_node.getY(),'3');
 
-            if (current_node.getX() == ma.getXStart() && current_node.getY() == ma.getYStart()) {
+            if (current_node.getX() == xstart && current_node.getY() == ystart) {
                 return current_node;
             }
 

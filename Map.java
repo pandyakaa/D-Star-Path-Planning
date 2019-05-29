@@ -76,6 +76,10 @@ public class Map {
         return ystart;
     }
 
+    public int getLand(int x, int y) {
+        return map.get(x).charAt(y);
+    }
+
     public void setPoint(int x, int y, char n) {
         map.get(x).setCharAt(y, n);
     }
@@ -103,7 +107,7 @@ public class Map {
 
     public boolean isValidPos(int i, int j) {
         if (i < width && j < length) {
-            if (map.get(i).charAt(j) == '0') {
+            if (map.get(i).charAt(j) == '0' || map.get(i).charAt(j) == '3' || map.get(i).charAt(j) == '4' ) {
                 return true;
             }
         }
