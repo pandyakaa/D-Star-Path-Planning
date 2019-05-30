@@ -121,13 +121,22 @@ public class Map {
         }
     }
 
-    public boolean isValidPos(int i, int j) {
+    public boolean isValidPos(int i, int j, String func) {
     /* @return true jika sebuah titik merupakan titik yang valid untuk dilalui */
-        if (i < width && j < length && i >= 0 && j >= 0) {
-            if (map.get(i).charAt(j) == '0' || map.get(i).charAt(j) == '3' || map.get(i).charAt(j) == '4' ) {
-                return true;
+        if (func.equals("recc")) {
+            if (i < width && j < length && i >= 0 && j >= 0) {
+                if (map.get(i).charAt(j) == '0' || map.get(i).charAt(j) == '4' || map.get(i).charAt(j) == '3' ) {
+                    return true;
+                }
             }
+        } else {
+            if (i < width && j < length && i >= 0 && j >= 0) {
+                if (map.get(i).charAt(j) == '0' || map.get(i).charAt(j) == '4' ) {
+                    return true;
+                }
+            } 
         }
+
 
         return false;
     }

@@ -37,7 +37,7 @@ public class DStar {
         this.pq = pq;
     }
 
-    public DNode startDS(int xstart, int ystart, int xfinal, int yfinal) {
+    public DNode startDS(int xstart, int ystart, int xfinal, int yfinal, String func) {
     /* Method startDS
        @return DNode dimana merupakan titik start jika path berhasil ditemukan 
        dan return null jika path tidak ditemukan */
@@ -60,7 +60,7 @@ public class DStar {
                 int curr_x = current_node.getX() + pos[0];
                 int curr_y = current_node.getY() + pos[1];
 
-                if (!(ma.isValidPos(curr_x,curr_y))) {
+                if (!(ma.isValidPos(curr_x,curr_y,func))) {
                     continue;
                 }                
 
@@ -81,11 +81,11 @@ public class DStar {
         return null;
     }
 
-    public void findPathUtil(int xs, int ys, int xf, int yf) {
+    public void findPathUtil(int xs, int ys, int xf, int yf, String func) {
     /* Digunakan sebagai utilitas untuk fungsi yang akan dipanggil di program utama
        @param int xs = x start, int ys = ystart, int xf = xfinal, int yf = yfinal */
 
-        DNode dn = startDS(xs, ys, xf, yf);
+        DNode dn = startDS(xs, ys, xf, yf,func);
 
         if (dn == null) {
             ma.showSolution();
@@ -122,7 +122,7 @@ public class DStar {
             if (isObstacle) {
                 xs = dn.getX();
                 ys = dn.getY();
-                findPathUtil(xs, ys, xf, yf);    
+                findPathUtil(xs, ys, xf, yf,"recc");    
             }
         }
     }
@@ -134,6 +134,6 @@ public class DStar {
         int xf = ma.getXFinal();
         int yf = ma.getYFinal();
 
-        findPathUtil(xs, ys, xf, yf);
+        findPathUtil(xs, ys, xf, yf,"notrecc");
     }
 }
