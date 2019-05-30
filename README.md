@@ -1,32 +1,61 @@
 # D-Star-Path-Planning
 Penelusuran peta menggunakan algoritma D star.
 
-## Deskripsi Tugas
-Buatlah sebuah program implementasi algoritma D star<sup>1</sup> yang dapat digunakan untuk menelusuri sebuah peta.
-Program harus dapat:
-1. Membaca peta<sup>2</sup> dari sebuah file eksternal (seperti pada tugas kecil 3 Strategi Algoritma), beserta node start dan node goal.
-2. Menampilkan peta beserta node start dan node goal.
-3. Memperlihatkan perubahan jalur, cost jalur beserta status setiap node pada peta selama eksplorasi.
-4. Menentukan apakah node goal dapat dicapai dari node start.
+## How to Use
+1. Clone repository ini
+2. Lakukan pengubahan peta(map) pada file **map.txt**, sesuaikan dengan kebutuhan
+3. Jika peta ada pada file selain map.txt, silahkan pada file Main.java, ubahlah
 
-Catatan:<br>
-<sup>1</sup> Implementasi algoritma bebas. Anda dapat memilih untuk menggunakan beberapa variasi algoritma D star seperti yang disebutkan di <a href="https://en.wikipedia.org/wiki/D*">sini</a>. Gunakanlah library external sesedikit mungkin, originalitas struktur data dan algoritma akan dihargai lebih.<br>
-<sup>2</sup> Peta boleh di-generate secara random. Gunakanlah peta yang dapat menampilkan kasus-kasus sebagai berikut:
-1. Node goal dapat dicapai dari node start tanpa perubahan jalur.
-2. Node goal dapat dicapai dari node start dengan perubahan jalur.
-3. Node goal tidak dapat dicapai dari node start setelah dilakukan eksplorasi peta.
+```java
+DStar ds = new DStar("map.txt");
+```
+dengan
+```java
+DStar ds = new DStar(<nama-file-map>.txt);
+```
 
-## Deliverables
-1. Source code program dalam bahasa C/C++/Java.
-2. File eksternal untuk kasus uji.
-2. Makefile.
-3. Readme yang berisi :
-   * Cara menjalankan program,
-   * penjelasan algoritma yang digunakan beserta perhitungan cost jalur, 
-   * library external yang digunakan beserta alasan penggunaan, 
-   * screenshot yang menampilkan minimal 3 kasus yang telah didefinisikan di atas beserta penjelasan untuk setiap screenshot,
-   * waktu pengerjaan beserta kesulitan yang dialami, dan
-   * referensi
+4. Jalankan program dengan 
+```java
+javac *.java
+java Main
+```
+
+5. Jika ingin menambahkan sebuah **_obstacle_** pada peta, dilakukan secara manual pada file **DStar.java**, pada bagian yang memiliki komentar _PERUBAHAN OBSTACLE_
+
+## Algoritma D-Star
+Algoritma D-Star menggunakan Algoritma A-Star, yang dapat beradaptasi jika pada saat melakukan _backtracking_ jalur, ternyata ada perubahan sehingga jalur awal tidak bisa ditempuh lagi.
+Implementasi pada program ini adalah sebagai berikut :
+1. Cari terlebih dahulu apakah goal node bisa dicapai atau tidak menggunakan algoritma A-Star dengan cost :
+```
+cost(node) = cost(prev_node) + 1 , jika berpindah ke kanan, kiri, atas, atau bawah
+cost(node) = cost(prev_node) + sqrt(2), jika berpindah secara serong atas kanan, atas kiri, bawah kanan, atau bawah kiri
+```
+2. Jika tidak bisa dicapai, maka keluarkan output 
+```
+PATH NOT FOUND
+```
+3. Jika bisa dicapai, akan _move_ dari start hingga ke goal node
+4. Jika tiba-tiba ada perubahan pada jalur, maka secara **rekursif** akan memanggil kembali algoritma A-Star dengan melakukan perubahan titik awal serta cost masing-masing node yang berubah akibat perubahan jalur
+
+## Library eksternal
+-
+
+## Uji Kasus
+
+### Uji Kasus 1 (Tanpa perubahan jalur)
+![1](https://user-images.githubusercontent.com/38171936/58598349-352f8700-82a6-11e9-9197-e58b28aaea5a.JPG)
+![2](https://user-images.githubusercontent.com/38171936/58598350-3660b400-82a6-11e9-8217-50902d77fbb0.JPG)
+
+### Uji Kasus 2 (Dengan perubahan jalur)
+![3](https://user-images.githubusercontent.com/38171936/58598423-80e23080-82a6-11e9-9e35-5f75eeee1927.JPG)
+![4](https://user-images.githubusercontent.com/38171936/58598424-817ac700-82a6-11e9-80db-bb583a2a9ed6.JPG)
+
+### Uji Kasus 3 (Goal tidak bisa dicapai)
+![5](https://user-images.githubusercontent.com/38171936/58599296-d9ff9380-82a9-11e9-9a19-75714c244113.JPG)
+
+## Waktu pengerjaan dan Kesulitan
+``` Pengerjaan dilakukan selama kurang lebih **lima** hari, dengan kesulitan terbesar tidak adanya algoritma DStar yang sudah jadi, sehingga harus memahami teori terlebih dahulu dan mengimplementasikannya menjadi sebuah program
+```
 
 ## Referensi:<br>
 <a href="https://www.cs.cmu.edu/~motionplanning/lecture/AppH-astar-dstar_howie.pdf">Motion Planning Lecture</a><br>

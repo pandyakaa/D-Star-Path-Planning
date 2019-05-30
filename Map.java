@@ -11,8 +11,12 @@ public class Map {
     int length,width;
 
     // Method
-    public Map() throws Exception {
-        File newfile = new File("map.txt");
+    public Map(String filename) throws Exception {
+    /* Konstruktor dari kelas Map
+       Akan membuat sebuah matriks dari file eksternal map.txt 
+       Sekaligus mencari koordinat mulai dan koordinat akhir
+       serta banyak kolom(length) dan banyak baris(width) */
+        File newfile = new File(filename);
         Scanner newscan = new Scanner(newfile);
         while(newscan.hasNextLine()) {
             StringBuilder temp = new StringBuilder(newscan.nextLine());
@@ -53,46 +57,58 @@ public class Map {
     }
 
     public ArrayList<StringBuilder> getMap() {
+    /* Getter untuk atribut map */
         return map;
     }
 
     public void setMap(ArrayList<StringBuilder> newmap) {
+    /* Setter untuk atribut map */    
         map = newmap;
     }
 
     public int getXFinal() {
+    /* Getter untuk atribut koordinat X Final */    
         return xfinal;
     }
 
     public int getYFinal() {
+    /* Getter untuk atribut koordinat Y Final */      
         return yfinal;
     }
 
     public int getXStart() {
+    /* Getter untuk atribut koordinat X Start */  
         return xstart;
     }
 
     public int getYStart() {
+    /* Getter untuk atribut koordinat Y Start */  
         return ystart;
     }
 
     public int getLand(int x, int y) {
+    /* Getter untuk atribut yang ada matriks[x][y] */  
         return map.get(x).charAt(y);
     }
 
     public void setPoint(int x, int y, char n) {
+    /* Setter untuk atribut yang ada matriks[x][y] */  
         map.get(x).setCharAt(y, n);
     }
 
     public int getLength() {
+    /* Getter untuk atribut length */  
         return length;
     }
 
     public int getWidth() {
+    /* Getter untuk atribut width */  
         return width;
     }
 
     public void showMap() {
+    /* Print pada map awal,
+       menunjukkan jalur yang bisa dilewati dan obstacle */
         for(int i = 0 ; i < width; i++ ) {
             for (int j = 0 ; j < length ; j++ ) {
                 if (map.get(i).charAt(j) == '0' ) {
@@ -106,7 +122,8 @@ public class Map {
     }
 
     public boolean isValidPos(int i, int j) {
-        if (i < width && j < length) {
+    /* @return true jika sebuah titik merupakan titik yang valid untuk dilalui */
+        if (i < width && j < length && i >= 0 && j >= 0) {
             if (map.get(i).charAt(j) == '0' || map.get(i).charAt(j) == '3' || map.get(i).charAt(j) == '4' ) {
                 return true;
             }
@@ -116,6 +133,8 @@ public class Map {
     }
 
     public void showSolution() {
+    /* Print pada map setelah dilakukan searching,
+       menunjukkan jalur yang sudah di explore dan obstacle */
         for (int i = 0 ; i < width ; i++) {
             for (int j = 0 ; j < length ; j++) {
                 if (map.get(i).charAt(j) == '0') {
