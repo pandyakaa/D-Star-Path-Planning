@@ -54,9 +54,7 @@ Tidak ada
 ![5](https://user-images.githubusercontent.com/38171936/58599296-d9ff9380-82a9-11e9-9a19-75714c244113.JPG)
 
 ## Waktu pengerjaan dan Kesulitan
-```
 Pengerjaan dilakukan selama kurang lebih **lima** hari, dengan kesulitan terbesar tidak adanya algoritma DStar yang sudah jadi, sehingga harus memahami teori terlebih dahulu dan mengimplementasikannya menjadi sebuah program
-```
 
 ## Referensi:<br>
 <a href="https://www.cs.cmu.edu/~motionplanning/lecture/AppH-astar-dstar_howie.pdf">Motion Planning Lecture</a><br>
