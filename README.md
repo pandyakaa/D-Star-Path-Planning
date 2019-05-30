@@ -38,7 +38,7 @@ PATH NOT FOUND
 4. Jika tiba-tiba ada perubahan pada jalur, maka secara **rekursif** akan memanggil kembali algoritma A-Star dengan melakukan perubahan titik awal serta cost masing-masing node yang berubah akibat perubahan jalur
 
 ## Library eksternal
--
+Tidak ada
 
 ## Uji Kasus
 
@@ -54,7 +54,8 @@ PATH NOT FOUND
 ![5](https://user-images.githubusercontent.com/38171936/58599296-d9ff9380-82a9-11e9-9a19-75714c244113.JPG)
 
 ## Waktu pengerjaan dan Kesulitan
-``` Pengerjaan dilakukan selama kurang lebih **lima** hari, dengan kesulitan terbesar tidak adanya algoritma DStar yang sudah jadi, sehingga harus memahami teori terlebih dahulu dan mengimplementasikannya menjadi sebuah program
+```
+Pengerjaan dilakukan selama kurang lebih **lima** hari, dengan kesulitan terbesar tidak adanya algoritma DStar yang sudah jadi, sehingga harus memahami teori terlebih dahulu dan mengimplementasikannya menjadi sebuah program
 ```
 
 ## Referensi:<br>
